@@ -19,7 +19,7 @@
 
     img {
         padding-left: 20px;
-        height: 50px;
+        height: @logoHeight;
         width: 50px;
         display: inline-block;
     }
