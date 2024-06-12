@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import { Delete } from '@element-plus/icons-vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 </script>
 
