@@ -4,13 +4,13 @@
             <div class="left"></div>
             <div class="right">
                 <h4>登 录</h4>
-                <el-form>
-                    <el-form-item :model="logininfos" :rules="rules">
+                <el-form :model="logininfos" :rules="rules" ref="loginforms">
+                    <el-form-item prop="username">
                         <el-input class="acc" type="text" placeholder="输入用户名" :prefix-icon="User"
                             v-model="logininfos.username">
                         </el-input>
                     </el-form-item>
-                    <el-form-item>
+                    <el-form-item prop="password">
                         <el-input class="acc" type="password" placeholder="密码" :prefix-icon="Lock"
                             v-model="logininfos.password" :show-password="true">
                         </el-input>
@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { ElForm } from 'element-plus';
 import { User, Lock } from '@element-plus/icons-vue';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 /* 引入小仓库 */
 import userStore from "../../stores/modules/user"
 //导入路由
@@ -35,9 +35,13 @@ import { ElNotification } from 'element-plus';
 import { getTime } from '../../utils/time'
 const userinfo = userStore();
 let $router = useRouter();
+let loginforms = ref();
 let logininfos = reactive({ username: 'admin', password: '111111' })
 
 const submit = async () => {
+    //保证校验全部通过
+    await loginforms.value.validate();
+
     try {
         await userinfo.UserLogins(logininfos);
         //编程式路由导航跳转
@@ -58,8 +62,12 @@ const submit = async () => {
 }
 
 const rules = {
-    username: [],
-    password: []
+    username: [
+        { required: true, min: 5, max: 10, message: '长度为6-10位', trigger: 'change' }
+    ],
+    password: [
+        { required: true, min: 5, max: 10, message: '长度为6-10位', trigger: 'change' }
+    ]
 }
 </script>
 

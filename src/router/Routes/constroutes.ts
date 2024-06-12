@@ -1,7 +1,7 @@
  const constroutes = [
     {
         path:'/home',
-        component:() => import('../../views/Home/homeRichu.vue'),
+        component:() => import('../../layout/index.vue'),
         name:'home'
     },
     {

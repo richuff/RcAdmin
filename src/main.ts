@@ -8,7 +8,6 @@ import 'element-plus/dist/index.css'
 /* 引入路由模块 */
 import Route from './router'
 /* import zhCn from 'element-plus/dist/locale/zh-cn.min.mjs' */
-
 const app = createApp(App)
 app.use(store)
 app.use(Route)

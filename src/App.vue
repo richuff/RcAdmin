@@ -7,4 +7,6 @@ import { Delete } from '@element-plus/icons-vue'
 
 </script>
 
-<style scoped lang="less"></style>
+<style lang="less">
+@import url(./styles/base.css);
+</style>
