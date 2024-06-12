@@ -1,0 +1,12 @@
+/* 顶部 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: yellow;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  border-radius: 10px;
+  background-color: chocolate;
+}
