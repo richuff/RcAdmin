@@ -1,4 +1,4 @@
 export default {
     title:'欢迎',
-    logo:'../'
+    logo:'../../public/favicon.ico'
 }
