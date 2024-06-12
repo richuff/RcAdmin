@@ -1,17 +1,11 @@
 <template>
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+  <router-view></router-view>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { Delete } from '@element-plus/icons-vue'
 import HelloWorld from './components/HelloWorld.vue'
-  export default{
-    name:'App',
-    components:{HelloWorld}
-  }
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped lang="less"></style>
