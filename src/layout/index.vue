@@ -9,7 +9,6 @@
         </div>
 
         <div class="layout_main">
-            <p style="height:10000px">sadadsa</p>
         </div>
     </div>
 </template>

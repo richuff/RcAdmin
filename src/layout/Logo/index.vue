@@ -1,6 +1,6 @@
 <template>
     <div class="logo">
-        <img src="../../public/favicon.ico" alt="">
+        <img src="../../assets/logo.svg" alt="">
         <p>欢迎</p>
     </div>
 </template>

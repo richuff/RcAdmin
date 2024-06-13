@@ -5,7 +5,8 @@ const constroutes = [
         component: () => import('../../layout/index.vue'),
         name: 'home',
         meta: {
-            title: '首页'
+            title: '首页',
+            isHidden: false
         },
         children: [{
             path: '/home',
@@ -20,7 +21,8 @@ const constroutes = [
         component: () => import('../../views/404/indexRichu.vue'),
         name: '404',
         meta: {
-            title: '404'
+            title: '404',
+            isHidden: true
         },
     },
     {
@@ -28,7 +30,8 @@ const constroutes = [
         component: () => import('../../views/Login/loginRichu.vue'),
         name: 'login',
         meta: {
-            title: '登录'
+            title: '登录',
+            isHidden: true
         },
     },
     {
@@ -36,7 +39,8 @@ const constroutes = [
         redirect: '/login',
         name: 'any',
         meta: {
-            title: '任意'
+            title: '任意',
+            isHidden: true
         },
     }
 ]
