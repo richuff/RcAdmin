@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '@/Logo/index.vue';
-import Menu from '@/menu/index.vue';
+import Logo from './Logo/index.vue';
+import Menu from './menu/index.vue';
 import userStore from '@/stores/modules/user';
 let userstore = userStore();
 
