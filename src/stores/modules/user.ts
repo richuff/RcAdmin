@@ -3,10 +3,17 @@ import {defineStore} from "pinia"
 /* 创建用户小仓库 */
 
 import {UserLogin} from '../../api/user/index';
+
+/* 引入路由（常量路由） */
+import  constroutes from '../../router/Routes/constroutes'
+
+//引用类型
+/* import type { UserState } from '../type/type'; */
 const userStore = defineStore('User',{
     state: ()=>{
         return {
             token: localStorage.getItem("TOKEN"),
+            meunRoutes : constroutes
         }
     },
     actions:{

@@ -45,7 +45,7 @@ const submit = async () => {
     try {
         await userinfo.UserLogins(logininfos);
         //编程式路由导航跳转
-        $router.push('/home');
+        $router.push('/');
         //登录成功的提示信息
         ElNotification({
             type: 'success',

@@ -2,21 +2,7 @@
     <div class="layout_container">
         <div class="left_meun">
             <Logo></Logo>
-            <el-scrollbar class="scroll-item">
-                <el-menu background-color="#8470FF" text-color="white">
-                    <el-menu-item index="1">首页</el-menu-item>
-                    <el-menu-item index="2">数据大屏</el-menu-item>
-                    <!-- 折叠菜单 -->
-                    <el-sub-menu index="3">
-                        <template #title>
-                            <span>权限管理</span>
-                        </template>
-                        <el-menu-item index="2-1">用户管理</el-menu-item>
-                        <el-menu-item index="2-2">角色管理</el-menu-item>
-                        <el-menu-item index="2-3">菜单管理</el-menu-item>
-                    </el-sub-menu>
-                </el-menu>
-            </el-scrollbar>
+            <Menu :meunlist="userstore.meunRoutes"></Menu>
         </div>
         <div class="top_nav">
             导航栏
@@ -29,7 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '../Logo/index.vue';
+import Logo from '@/Logo/index.vue';
+import Menu from '@/menu/index.vue';
+import userStore from '@/stores/modules/user';
+let userstore = userStore();
+
 </script>
 
 <style lang="less" scoped>
