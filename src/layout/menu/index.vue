@@ -1,6 +1,7 @@
 <template>
     <template v-for="item of meunlist" :key="item.path">
-        <el-menu background-color="#e0c3fc" :default-active="$route.path">
+        <el-menu background-color="#e0c3fc" :default-active="$route.path" :collapse="settingStore.isfold"
+            collapse-transition>
             <!-- 展示只有一级路由的，不需要折叠 -->
             <el-menu-item v-if="!item.meta.isHidden && !item.children" :index="item.path" @click="GoRoute">
                 <el-icon>
@@ -47,8 +48,10 @@
 
 <script setup lang="ts">
 defineProps(['meunlist'])
+import SettingStore from '@/stores/modules/setting';
 import { useRouter } from 'vue-router'
 let $router = useRouter();
+let settingStore = SettingStore();
 const GoRoute = (vc: any) => {
     $router.push(vc.index);
 }

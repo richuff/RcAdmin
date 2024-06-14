@@ -18,9 +18,9 @@
     align-items: center;
 
     img {
-        padding-left: 20px;
+        padding-left: 10px;
         height: @logoHeight;
-        width: 50px;
+        width: 30px;
         display: inline-block;
     }
 
