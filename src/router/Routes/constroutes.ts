@@ -12,7 +12,8 @@ const constroutes = [
             path: '/home',
             component: () => import('../../layout/menu/index.vue'),
             meta: {
-                title: '主页'
+                title: '主页',
+                icon: 'HomeFilled'
             },
         }]
     },

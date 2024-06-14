@@ -21,6 +21,7 @@
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2",
     "vuex": "^4.1.0"
