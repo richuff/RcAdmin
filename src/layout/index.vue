@@ -2,13 +2,16 @@
     <div class="layout_container">
         <div class="left_meun">
             <Logo></Logo>
-            <Menu :meunlist="userstore.meunRoutes"></Menu>
+            <el-scrollbar class="scrollbar">
+                <Menu :meunlist="userstore.meunRoutes"></Menu>
+            </el-scrollbar>
         </div>
         <div class="top_nav">
-            导航栏
+            <Tabbar></Tabbar>
         </div>
 
         <div class="layout_main">
+            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -17,6 +20,9 @@
 import Logo from './Logo/index.vue';
 import Menu from './menu/index.vue';
 import userStore from '@/stores/modules/user';
+import Tabbar from './tabbar/index.vue'
+/* import { useRouter } from 'vue-router'
+let $router = useRouter(); */
 let userstore = userStore();
 
 </script>

@@ -1,12 +1,12 @@
 <template>
     <template v-for="item of meunlist" :key="item.path">
-        <el-menu>
+        <el-menu background-color="#e0c3fc" :default-active="$route.path">
             <!-- 展示只有一级路由的，不需要折叠 -->
             <el-menu-item v-if="!item.meta.isHidden && !item.children" :index="item.path" @click="GoRoute">
+                <el-icon>
+                    <component :is="item.meta.icon"></component>
+                </el-icon>
                 <template #title>
-                    <el-icon>
-                        <component :is="item.meta.icon"></component>
-                    </el-icon>
                     <span>
                         {{ item.meta.title }}
                     </span>
@@ -15,10 +15,10 @@
             <!-- 展示有子路由只有一个的，不需要折叠 -->
             <el-menu-item v-if="!item.meta.isHidden && item.children && item.children.length == 1"
                 :index="item.children[0].path" @click="GoRoute">
+                <el-icon>
+                    <component :is="item.children[0].meta.icon"></component>
+                </el-icon>
                 <template #title>
-                    <el-icon>
-                        <component :is="item.children[0].meta.icon"></component>
-                    </el-icon>
                     <span>
                         {{ item.children[0].meta.title }}
                     </span>
@@ -47,9 +47,10 @@
 
 <script setup lang="ts">
 defineProps(['meunlist'])
+import { useRouter } from 'vue-router'
+let $router = useRouter();
 const GoRoute = (vc: any) => {
-    const route = vc.index;
-    console.log(route);
+    $router.push(vc.index);
 }
 
 </script>
