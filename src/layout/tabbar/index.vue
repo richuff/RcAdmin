@@ -18,16 +18,15 @@
             <el-button size="default" type="primary" :icon="Refresh" circle @click="refresh"></el-button>
             <el-button size="default" type="primary" :icon="FullScreen" circle @click="FullSceen"></el-button>
             <el-button size="default" type="primary" :icon="Setting" circle></el-button>
-            <img src="../../assets/logo.svg" style="width:20px;height:20px">
+            <img :src="UserStore.avatar" style="width:40px;height:40px;border-radius:50%;margin:0 10px">
             <!-- 下拉菜单 -->
             <el-dropdown>
                 <span class="el-dropdown-link">
-                    Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+                    {{ UserStore.username }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>Action 1</el-dropdown-item>
-                        <el-dropdown-item>Action 2</el-dropdown-item>
+                        <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -39,6 +38,8 @@
 import { ArrowRight, FullScreen, Refresh, Setting } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import SettingStore from '@/stores/modules/setting';
+import userStore from '@/stores/modules/user';
+let UserStore = userStore();
 let settingStore = SettingStore();
 let isfold = ref(false);
 const changemenu = () => {
@@ -57,6 +58,11 @@ const FullSceen = () => {
     } else {
         document.exitFullscreen();
     }
+}
+//退出登录相关
+const logout = () => {
+    //去除token
+    UserStore.UserLogOut();
 }
 //顶部面包屑
 </script>

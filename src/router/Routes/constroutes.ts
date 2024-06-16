@@ -3,13 +3,14 @@ const constroutes = [
         path: '/',
         component: () => import('../../layout/index.vue'),
         name: 'home',
+        redirect: '/home',
         meta: {
             isHidden: false,
             isHid: true
         },
         children: [{
             path: '/home',
-            component: () => import('../../layout/main/index.vue'),
+            component: () => import('../../views/Home/homeRichu.vue'),
             meta: {
                 title: '主页',
                 icon: 'HomeFilled'
