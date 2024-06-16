@@ -4,8 +4,8 @@ const constroutes = [
         component: () => import('../../layout/index.vue'),
         name: 'home',
         meta: {
-            title: '首页',
-            isHidden: false
+            isHidden: false,
+            isHid: true
         },
         children: [{
             path: '/home',
@@ -57,6 +57,7 @@ const constroutes = [
         path: '/acl',
         component: () => import('../../layout/index.vue'),
         name: 'acl',
+        redirect: '/acl/user',
         meta: {
             title: '权限管理',
             isHidden: false,
@@ -99,6 +100,7 @@ const constroutes = [
         path: '/product',
         component: () => import('../../layout/index.vue'),
         name: 'product',
+        redirect: '/product/trademark',
         meta: {
             title: '商品管理',
             isHidden: false,

@@ -5,13 +5,18 @@
                 <component :is="isfold ? 'Fold' : 'Expand'"></component>
             </el-icon>
             <el-breadcrumb :separator-icon="ArrowRight">
-                <el-breadcrumb-item :to="{ path: '/' }">权限管理</el-breadcrumb-item>
-                <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="(item, index) of $route.matched" v-show="!item.meta.isHid" :key="index"
+                    :to="item.path">
+                    <el-icon style="margin-top:5px;margin-left:5px;margin-right:5px">
+                        <component :is="item.meta.icon"></component>
+                    </el-icon>
+                    <span>{{ item.meta.title }}</span>
+                </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="tabbar-right">
-            <el-button size="default" type="primary" :icon="Refresh" circle></el-button>
-            <el-button size="default" type="primary" :icon="FullScreen" circle></el-button>
+            <el-button size="default" type="primary" :icon="Refresh" circle @click="refresh"></el-button>
+            <el-button size="default" type="primary" :icon="FullScreen" circle @click="FullSceen"></el-button>
             <el-button size="default" type="primary" :icon="Setting" circle></el-button>
             <img src="../../assets/logo.svg" style="width:20px;height:20px">
             <!-- 下拉菜单 -->
@@ -39,6 +44,21 @@ let isfold = ref(false);
 const changemenu = () => {
     settingStore.isfold = !settingStore.isfold;
 }
+
+const refresh = () => {
+    settingStore.isrefresh = !settingStore.isrefresh;
+}
+
+const FullSceen = () => {
+    let full = document.fullscreenElement;
+
+    if (!full) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+//顶部面包屑
 </script>
 
 <style lang="less" scoped>
