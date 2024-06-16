@@ -7,6 +7,8 @@ import { UserLogin, UserInfo } from '../../api/user/index';
 /* 引入路由（常量路由） */
 import constroutes from '../../router/Routes/constroutes'
 
+//操作本地存储的方法 SET_TOKEN
+
 //引用类型
 /* import type { UserState } from '../type/type'; */
 const userStore = defineStore('User', {

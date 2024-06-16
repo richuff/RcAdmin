@@ -29,12 +29,13 @@ import { reactive, ref } from 'vue';
 /* 引入小仓库 */
 import userStore from "../../stores/modules/user"
 //导入路由
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 //导入消息提示
 import { ElNotification } from 'element-plus';
 import { getTime } from '../../utils/time'
 const userinfo = userStore();
 let $router = useRouter();
+let $route = useRoute();
 let loginforms = ref();
 let logininfos = reactive({ username: 'admin', password: '111111' })
 
@@ -45,7 +46,8 @@ const submit = async () => {
     try {
         await userinfo.UserLogins(logininfos);
         //编程式路由导航跳转
-        $router.push('/');
+        let redirect: any = $route.query.redirect;
+        $router.push({ path: redirect || '/' })
         //登录成功的提示信息
         ElNotification({
             type: 'success',

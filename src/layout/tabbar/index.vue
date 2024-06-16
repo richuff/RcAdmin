@@ -42,6 +42,11 @@ import userStore from '@/stores/modules/user';
 let UserStore = userStore();
 let settingStore = SettingStore();
 let isfold = ref(false);
+//引入路由
+import { useRouter, useRoute } from 'vue-router';
+
+let $router = useRouter();
+let $route = useRoute();
 const changemenu = () => {
     settingStore.isfold = !settingStore.isfold;
 }
@@ -63,6 +68,7 @@ const FullSceen = () => {
 const logout = () => {
     //去除token
     UserStore.UserLogOut();
+    $router.push({ path: "/login", query: { redirect: $route.path } });
 }
 //顶部面包屑
 </script>
