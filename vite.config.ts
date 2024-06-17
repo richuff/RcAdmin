@@ -34,6 +34,17 @@ export default defineConfig(({ command }) => {
         javascriptEnabled: true,
       },
     },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://sph-api.atguigu.cn',
+        /* 是否代理跨域 */
+        changeOrigin: true,
+        /* 是否路径重写 */
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    }}
   }
-}}
+}
 )

@@ -19,6 +19,7 @@
     "axios": "^1.7.2",
     "element-plus": "^2.7.5",
     "mockjs": "^1.1.0",
+    "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-svg-icons": "^2.0.1",

@@ -20,5 +20,6 @@ app.use(globalComponents)
 /* app.use(ElementPlus,{
     locale:zhCn
 }) */
-
+//使用进度条鉴权业务
+import './permission'
 app.mount('#app')
