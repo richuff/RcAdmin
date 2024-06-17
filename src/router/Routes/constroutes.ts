@@ -37,7 +37,7 @@ const constroutes = [
     },
     {
         path: '/:pathMatch(.*)*',
-        redirect: '/login',
+        redirect: '/404',
         name: 'any',
         meta: {
             title: '任意',

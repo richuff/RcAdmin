@@ -65,9 +65,9 @@ const FullSceen = () => {
     }
 }
 //退出登录相关
-const logout = () => {
+const logout = async () => {
     //去除token
-    UserStore.UserLogOut();
+    await UserStore.UserLogOut();
     $router.push({ path: "/login", query: { redirect: $route.path } });
 }
 //顶部面包屑

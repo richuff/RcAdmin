@@ -2,7 +2,7 @@
 import { defineStore } from "pinia"
 /* 创建用户小仓库 */
 
-import { UserLogin, UserInfo } from '../../api/user/index';
+import { UserLogin, UserInfo, UserLoginout } from '../../api/user/index';
 
 /* 引入路由（常量路由） */
 import constroutes from '../../router/Routes/constroutes'
@@ -23,32 +23,38 @@ const userStore = defineStore('User', {
     actions: {
         async UserLogins(data: any) {
             let result: any = await UserLogin(data);
-            console.log(this.token);
-
             if (result.code == 200) {
-                this.token = result.data.token;
-                localStorage.setItem("TOKEN", result.data.token);
+                this.token = result.data;
+                localStorage.setItem("TOKEN", result.data);
                 return "ok"
             } else {
-                return Promise.reject(new Error(result.data.message));
+                return Promise.reject(new Error(result.message));
             }
         },
         //获取用户信息
         async userinfo() {
             let result: any = await UserInfo();
             if (result.code = 200) {
-                this.username = result.data.checkUser.username;
-                this.avatar = result.data.checkUser.avatar;
+                this.username = result.data.name;
+                this.avatar = result.data.avatar;
+                return 'ok';
             } else {
+                return Promise.reject("获取失败");
             }
         },
 
-        UserLogOut() {
+        async UserLogOut() {
             //通知退出服务
-            this.username = '';
-            this.avatar = '';
-            this.token = '';
-            localStorage.removeItem("TOKEN");
+            let result = await UserLoginout();
+            if (result) {
+                this.username = '';
+                this.avatar = '';
+                this.token = '';
+                localStorage.removeItem("TOKEN");
+                return 'ok';
+            } else {
+                return Promise.reject(new Error(result.message));
+            }
         }
     },
     getters: {
