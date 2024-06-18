@@ -7,19 +7,20 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 /* 引入路由模块 */
 import Route from './router'
-/* import zhCn from 'element-plus/dist/locale/zh-cn.min.mjs' */
+//@ts-ignore
+import zhCn from 'element-plus/dist/locale/zh-cn.min.mjs'
 //svg
 import 'virtual:svg-icons-register'
 import globalComponents from './components/index'
 const app = createApp(App)
 app.use(store)
 app.use(Route)
-app.use(ElementPlus)
+//app.use(ElementPlus)
 app.use(globalComponents)
 //国际化，使用中文
-/* app.use(ElementPlus,{
-    locale:zhCn
-}) */
+app.use(ElementPlus, {
+    locale: zhCn
+})
 //使用进度条鉴权业务
 import './permission'
 app.mount('#app')

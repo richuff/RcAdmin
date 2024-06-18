@@ -1,6 +1,6 @@
 <template>
     <div class="layout_container">
-        <div class="left_meun" :class="{ fold: settingStore.isfold }">
+        <div class="left_meun">
             <Logo></Logo>
             <el-scrollbar class="scrollbar">
                 <Menu :meunlist="userstore.meunRoutes"></Menu>
