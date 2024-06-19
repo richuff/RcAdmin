@@ -1,6 +1,6 @@
 <template>
     <el-card style="width: 100%-260px ;margin:20px 20px;margin-right:20px;">
-        <el-button type="primary" size="default" icon="Plus">添加品牌</el-button>
+        <el-button type="primary" size="default" icon="Plus" @click="DialogVisible">添加品牌</el-button>
         <el-table style="width: 100%;margin:10px 0;" border :data="trademarklist">
             <el-table-column label="序号" width="80px" align="center" type="index" />
             <el-table-column label="品牌名称">
@@ -21,27 +21,53 @@
             </el-table-column>
         </el-table>
         <el-pagination v-model:current-page="PageNo" v-model:page-size="PageSize" :page-sizes="pageSizes"
-            layout="prev, pager, next, jumper,->,sizes,total " :total="total" @size-change="onMounted"
+            layout="prev, pager, next, jumper,->,sizes,total " :total="total" @size-change="pagesizechange"
             @current-change="gethasTardemark" />
     </el-card>
-
+    <el-dialog v-model="dialogVisible" title="商品">
+        <el-form width="80%">
+            <el-form-item label="商品名称">
+                <el-input placeholder="请输入品牌名称" v-model="FormData.tmName"></el-input>
+            </el-form-item>
+            <el-form-item label="品牌logo">
+                <el-upload multiple action="/api/admin/product/fileupload">
+                    <img v-if="FormData.logoUrl" :src="FormData.logoUrl" class="avatar" />
+                    <el-icon v-else class="avatar-uploader-icon">
+                        <Plus />
+                    </el-icon>
+                </el-upload>
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <el-button type="primary" size="default">确定</el-button>
+            <el-button type="primary" size="default" @click="cancel">取消</el-button>
+        </template>
+    </el-dialog>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import { reqHadTrademark } from '../../api/production/trademark'
+import { onMounted, ref, reactive } from 'vue';
+import { reqHadTrademark, reqAddOrUpdateTrademark } from '../../api/production/trademark'
+import type { ITrademark } from '../../api/production/type/type'
 let PageNo = ref<number>(1);
 let PageSize = ref<number>(3);
 let pageSizes = ref([3, 5, 7, 9]);
-
 //存储数据
-let trademarklist = reactive([]);
+let trademarklist = ref([]);
+//收集表单
 let total = ref<number>(0);
-let gethasTardemark = async () => {
+
+
+let FormData = reactive<ITrademark>({
+    tmName: '',
+    logoUrl: ''
+});
+let gethasTardemark = async (page = 1) => {
+    PageNo.value = page;
     let result: any = await reqHadTrademark(PageNo.value, PageSize.value);
     if (result.code == 200) {
         total.value = result.data.total;
-        trademarklist = result.data.records;
+        trademarklist.value = result.data.records;
     }
 }
 const getimg = (url: any) => {
@@ -55,6 +81,30 @@ onMounted(() => {
     gethasTardemark();
 })
 
+const pagesizechange = (newpageSizes: number) => {
+    gethasTardemark();
+}
+
+const dialogVisible = ref<boolean>(false);
+
+//提示对话框
+const DialogVisible = () => {
+    dialogVisible.value = true;
+}
+
+//关闭对话框
+const cancel = () => {
+    dialogVisible.value = false;
+}
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
+    border: 1px solid black;
+}
+</style>
