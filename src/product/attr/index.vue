@@ -1,6 +1,17 @@
 <template>
     <div>
-        <h1>attr</h1>
+        <div>
+            <Category />
+        </div>
+        <el-card style="margin:20px 20px;">
+            <el-button type="primary" size="default" icon="Plus">添加属性</el-button>
+            <el-table style="width: 100%;margin:10px 0px;">
+                <el-table-column label="序号" align="center" type="index" width="80px" />
+                <el-table-column label="属性值名称" width="240px" />
+                <el-table-column label="属性值" />
+                <el-table-column label="操作" width="240px" />
+            </el-table>
+        </el-card>
     </div>
 </template>
 
