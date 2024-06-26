@@ -1,3 +1,4 @@
+//品牌类型定义
 export interface IresponseTrademark {
     code: number;
     message: string;
@@ -21,4 +22,21 @@ export interface ITrademarkResponseData extends IresponseTrademark {
         searchCount: boolean;
         pages: number;
     }
+}
+//属性类型定义
+export interface CateGory1 {
+    code: number;
+    message: string;
+    ok: boolean;
+}
+
+export interface CateGoryObj {
+    id: number | string;
+    name: string;
+    category1Id?: number;
+    category2Id?: number;
+}
+
+export interface CateGoryResponseData extends CateGory1 {
+    data: CateGoryObj[]
 }
