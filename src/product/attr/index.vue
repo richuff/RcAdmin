@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Category />
+            <Category/>
         </div>
         <el-card style="margin:20px 20px;">
             <el-button type="primary" size="default" icon="Plus">添加属性</el-button>
@@ -16,7 +16,10 @@
 </template>
 
 <script setup lang="ts">
+import {ref} from 'vue';
 
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+
+</style>
