@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import CateGoryStore from '@/stores/modules/category';
 let cateGoryStore = CateGoryStore();
 
