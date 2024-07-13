@@ -15,7 +15,9 @@ const userStore = defineStore('User', {
     state: () => {
         return {
             token: localStorage.getItem("TOKEN"),
+            //用户名
             username: '',
+            //用户头像
             avatar: '',
             meunRoutes: constroutes,
         }
