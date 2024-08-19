@@ -1,4 +1,4 @@
-##richu_vueapp
+<h2>richu_vueapp</h2>h2><br/>
 This a project writed by Vue3 and typescript 
 
 ##Quick Start
