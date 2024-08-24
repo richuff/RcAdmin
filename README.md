@@ -34,4 +34,4 @@ export default {
 
 ## License
 
-ichu_vueapp is [MIT licensed](https://github.com/facebook/react/blob/main/LICENSE).
+ichu_vueapp is [MIT LICENSE](https://github.com/richu94/richu_vueapp/blob/master/LICENSE)
