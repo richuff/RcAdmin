@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-
+document.body.style.overflow = "hidden"
 </script>
 
 <style lang="less">

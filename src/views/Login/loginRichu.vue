@@ -1,7 +1,9 @@
 <template>
     <div class="login">
         <div class="box">
-            <div class="left"></div>
+            <div class="left">
+                <img src="../../assets/images/hoshino.png"></img>
+            </div>
             <div class="right">
                 <h4>登 录</h4>
                 <el-form :model="logininfos" :rules="rules" ref="loginforms">
@@ -99,8 +101,16 @@ const rules = {
 .box .left {
     position: relative;
     width: 35%;
-    height: 100%;
+    height: 90%;
     background-color: skyblue;
+
+    img {
+        margin: auto auto;
+        height: 90%;
+        object-fit: fill;
+        margin-top: 16px;
+
+    }
 }
 
 .box .left::before {

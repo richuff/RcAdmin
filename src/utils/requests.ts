@@ -21,7 +21,7 @@ request.interceptors.response.use((response) => {
     return response.data;
 }, (error) => {
     let message = '';
-    const status = error.response.status;
+    const status = error.response.status ? error.response.status : 0;
 
     switch (status) {
         case 401:
