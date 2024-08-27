@@ -20,15 +20,15 @@ This a project writed by Vue3 and typescript
 
 ## Quick Start
 
-> 修改配置文件
+> Modify the configuration file
 
 ```typescript
 //#settings.ts
 
-//配置设置
+//Configure the settings
 export default {
-    title:'欢迎',     //页面标题  
-    logo:'../../public/favicon.ico'      //页面的logo
+    title:'Welcome',     //Page title  
+    logo:'../../public/favicon.ico'      //Page logo
 }
 ```
 
