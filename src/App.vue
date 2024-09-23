@@ -1,11 +1,17 @@
 <template>
-  <router-view></router-view>
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
 </template>
 
-<script setup lang="ts">
-
+<script lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+  export default{
+    name:'App',
+    components:{HelloWorld}
+  }
 </script>
 
-<style lang="less">
-@import url(./styles/base.css);
+<style scoped>
+
 </style>
