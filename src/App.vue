@@ -11,9 +11,13 @@
 </template>
 
 <script setup lang="ts">
+<<<<<<< HEAD
 import { Delete } from '@element-plus/icons-vue'
 import HelloWorld from './components/HelloWorld.vue'
 
+=======
+document.body.style.overflow = "hidden"
+>>>>>>> 56a8778e9e5317507b7d344cda36908b812a3b4c
 </script>
 
 <style scoped></style>

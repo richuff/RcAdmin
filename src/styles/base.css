@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+=======
+/* 顶部 */
+/* 菜单栏收缩大小 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: yellow;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  border-radius: 10px;
+  background-color: chocolate;
+}
+>>>>>>> 56a8778e9e5317507b7d344cda36908b812a3b4c
