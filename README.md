@@ -2,7 +2,7 @@
 
 ![Static Badge](https://img.shields.io/badge/node-20.12.2-green)        ![Static Badge](https://img.shields.io/badge/npm-10.8.2-green)          ![Static Badge](https://img.shields.io/badge/vue-3.4.21-blue)       ![Static Badge](https://img.shields.io/badge/pinia-2.1.7-blue)        ![Static Badge](https://img.shields.io/badge/vue_router-4.3.2-blue)       ![Static Badge](https://img.shields.io/badge/axios-1.7.2-blue)      ![Static Badge](https://img.shields.io/badge/typescript-5.4.5-blue)      
 
-![GitHub language count](https://img.shields.io/github/languages/count/richu94/richu_vueapp)      ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/richu94/RcAdmin)
+![GitHub language count](https://img.shields.io/github/languages/count/richuff/RcAdmin)      ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/richuff/RcAdmin)
 
 ## Introduce
 
