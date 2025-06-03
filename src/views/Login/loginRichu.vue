@@ -162,6 +162,7 @@ el-form {
     transform: translateX(-50%);
     text-align: center;
     line-height: 5rem;
+    cursor: pointer
 }
 
 .right .submit:hover {

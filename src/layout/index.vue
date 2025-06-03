@@ -36,7 +36,7 @@ let userstore = userStore();
 
 .layout_container {
     height: 100vh;
-    width: 100%;
+    width: calc(10% - @topNavHeight);
 }
 
 .left_meun {

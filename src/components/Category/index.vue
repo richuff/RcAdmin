@@ -27,9 +27,7 @@
 
 <script setup lang="ts">
 import CateGoryStore from '@/stores/modules/category';
-import { ref } from 'vue';
 let cateGoryStore = CateGoryStore();
-
 
 //引入生命周期钩子
 import { onMounted } from 'vue';

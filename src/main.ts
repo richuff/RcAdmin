@@ -11,7 +11,7 @@ import Route from './router'
 import zhCn from 'element-plus/dist/locale/zh-cn.min.mjs'
 //svg
 import 'virtual:svg-icons-register'
-
+import './styles/reset.less'
 import globalComponents from './components/index'
 
 const app = createApp(App)

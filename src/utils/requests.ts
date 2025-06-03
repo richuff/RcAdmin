@@ -4,7 +4,7 @@ import userStore from "@/stores/modules/user";
 
 const request = axios.create({
     baseURL: "http://localhost:5173/",
-    timeout: 5000,
+    timeout: 10000,
 })
 
 request.interceptors.request.use((config) => {
@@ -21,6 +21,7 @@ request.interceptors.response.use((response) => {
     return response.data;
 }, (error) => {
     let message = '';
+    console.log(error)
     const status = error.response.status;
 
     switch (status) {
