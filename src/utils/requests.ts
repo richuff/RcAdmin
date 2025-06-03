@@ -1,6 +1,5 @@
 import axios from "axios"
 import { ElMessage } from "element-plus";
-import userStore from "@/stores/modules/user";
 
 const request = axios.create({
     baseURL: "http://localhost:5173/",
@@ -8,23 +7,28 @@ const request = axios.create({
 })
 
 request.interceptors.request.use((config) => {
+<<<<<<< HEAD
+    console.log(config.data);
+=======
     const myUserStore = userStore();
     if (myUserStore.token) {
         config.headers.token = myUserStore.token;
     }
+>>>>>>> 56a8778e9e5317507b7d344cda36908b812a3b4c
     return config;
-}, error => {
+},error => {
     return Promise.reject(error);
 });
 
-request.interceptors.response.use((response) => {
+request.interceptors.response.use((response)=>{
+    console.log(response.data);
+    
     return response.data;
-}, (error) => {
+},(error)=>{
     let message = '';
-    console.log(error)
-    const status = error.response.status;
+    const status = error.response.status ? error.response.status : 0;
 
-    switch (status) {
+    switch(status){
         case 401:
             message = "TOKEN过期"
             break;
@@ -43,7 +47,7 @@ request.interceptors.response.use((response) => {
     }
 
     ElMessage({
-        type: "error",
+        type:"error",
         message
     })
     return Promise.reject(error);
