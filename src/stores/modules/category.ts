@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { reqC1, reqC2, reqC3 } from "../../api/production/attr"
-import type { CateGoryResponseData } from "../../api/production/type/type"
+import { reqAttr, reqC1, reqC2, reqC3 } from "../../api/production/attr"
+import type { AttrResponseData, CateGoryResponseData } from "../../api/production/type/type"
 import type { CategoryState } from '../type/type'
 
 let CateGoryStore = defineStore('Category', {
@@ -11,7 +11,8 @@ let CateGoryStore = defineStore('Category', {
             C3ID: "",
             C1Arr: [],
             C2Arr: [],
-            C3Arr: []
+            C3Arr: [],
+            AttrList:[]
         }
     },
     actions: {
@@ -32,6 +33,13 @@ let CateGoryStore = defineStore('Category', {
             let result: CateGoryResponseData = await reqC3(this.C2ID);
             if (result.code == 200) {
                 this.C3Arr = result.data;
+            }
+        },
+
+        async getAttr() {
+            let result: AttrResponseData = await reqAttr(this.C1ID,this.C2ID,this.C3ID);
+            if (result.code == 200) {
+                this.AttrList = result.data;
             }
         }
     },

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { ElMessage } from "element-plus";
+import userStore from "@/stores/modules/user";
 
 const request = axios.create({
     baseURL: "http://localhost:5173/",
@@ -7,14 +8,10 @@ const request = axios.create({
 })
 
 request.interceptors.request.use((config) => {
-<<<<<<< HEAD
-    console.log(config.data);
-=======
     const myUserStore = userStore();
     if (myUserStore.token) {
         config.headers.token = myUserStore.token;
     }
->>>>>>> 56a8778e9e5317507b7d344cda36908b812a3b4c
     return config;
 },error => {
     return Promise.reject(error);
@@ -26,7 +23,7 @@ request.interceptors.response.use((response)=>{
     return response.data;
 },(error)=>{
     let message = '';
-    const status = error.response.status ? error.response.status : 0;
+    const status = error.response?.status ? error.response?.status : 0;
 
     switch(status){
         case 401:

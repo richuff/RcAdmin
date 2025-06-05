@@ -30,7 +30,7 @@ import CateGoryStore from '@/stores/modules/category';
 let cateGoryStore = CateGoryStore();
 
 //引入生命周期钩子
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 onMounted(() => {
     getC1();
 })
@@ -55,6 +55,11 @@ const handlered1 = () => {
     cateGoryStore.C3ID = "";
     cateGoryStore.getC3();
 }
+watch(() => cateGoryStore.C3ID, async () => {
+    cateGoryStore.AttrList = []
+    if (!cateGoryStore.C3ID) return
+    await cateGoryStore.getAttr()
+})
 </script>
 
 <style lang="less" scoped></style>
