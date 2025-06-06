@@ -1,3 +1,10 @@
+//属性类型定义
+export interface ResponseData {
+    code: number;
+    message: string;
+    ok: boolean;
+}
+
 //品牌类型定义
 export interface IresponseTrademark {
     code: number;
@@ -23,6 +30,7 @@ export interface ITrademarkResponseData extends IresponseTrademark {
         pages: number;
     }
 }
+
 //属性类型定义
 export interface CateGory1 {
     code: number;
@@ -40,3 +48,25 @@ export interface CateGoryObj {
 export interface CateGoryResponseData extends CateGory1 {
     data: CateGoryObj[]
 }
+
+export interface AttrValue{
+    id:number,
+    valueName:string,
+    attrId:number
+}
+
+export type AttrValueList = AttrValue[]
+
+export interface Attr{
+    id:number,
+    valueName:string,
+    categoryId:number,
+    categoryLevel: number
+}
+
+export type AttrList = Attr[]
+
+export interface AttrResponseData extends ResponseData{
+    data:AttrList
+}
+
