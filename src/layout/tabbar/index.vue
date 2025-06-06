@@ -52,6 +52,7 @@ const changemenu = () => {
 }
 
 const refresh = () => {
+    window.location.reload()
     settingStore.isrefresh = !settingStore.isrefresh;
 }
 

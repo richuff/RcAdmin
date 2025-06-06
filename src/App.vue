@@ -7,5 +7,4 @@
 </script>
 
 <style lang="less">
-@import url(./styles/base.css);
 </style>

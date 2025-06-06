@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Category />
+            <Category :scren="scren" />
         </div>
         <el-card style="margin:20px 20px;">
             <div v-show="scren == 0">
