@@ -50,17 +50,18 @@ export interface CateGoryResponseData extends CateGory1 {
 }
 
 export interface AttrValue{
-    id:number,
+    id?:number,
     valueName:string,
-    attrId:number
+    attrId?:number
 }
 
 export type AttrValueList = AttrValue[]
 
 export interface Attr{
-    id:number,
-    valueName:string,
-    categoryId:number,
+    id?:number,
+    attrName:string,
+    attrValueList:AttrValueList,
+    categoryId:number | string,
     categoryLevel: number
 }
 
