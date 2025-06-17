@@ -52,7 +52,8 @@ export interface CateGoryResponseData extends CateGory1 {
 export interface AttrValue{
     id?:number,
     valueName:string,
-    attrId?:number
+    attrId?:number,
+    flag?:boolean
 }
 
 export type AttrValueList = AttrValue[]
