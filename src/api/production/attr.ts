@@ -1,6 +1,6 @@
 //书写与属性相关的API
 import request from "../../utils/requests"
-import type { AttrResponseData, AttrValue, CateGoryResponseData } from './type/type'
+import type { AttrResponseData, Attr, CateGoryResponseData } from './type/type'
 enum API {
     START_URL = "/api/admin/product",
     C1_URL = START_URL+"/getCategory1",
@@ -19,4 +19,4 @@ export const reqC3 = (category2Id: number | string) => request.get<any, CateGory
 export const reqAttr = (category1Id:number | string, category2Id:number | string,category3Id:number | string) => 
     request.get<any,AttrResponseData>(API.ATTR_URL+`${category1Id}/${category2Id}/${category3Id}`);
 
-export const updateAttr = (data:Attr) => request.post<any,any>(API.UPDATE_ATTR,data);
+export const reqUpdateAttr = (data:Attr) => request.post<any,any>(API.UPDATE_ATTR,data);
