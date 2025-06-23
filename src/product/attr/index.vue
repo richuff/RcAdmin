@@ -17,8 +17,12 @@
                     </el-table-column>
                     <el-table-column label="操作" width="240px;">
                         <template #="{ row, _ }">
-                            <el-button type="primary" icon="Edit" @click="updateAttr">编辑</el-button>
-                            <el-button type="danger" icon="Delete">删除</el-button>
+                            <el-button type="primary" icon="Edit" @click="updateAttr(row)">编辑</el-button>
+                            <el-popconfirm title="是否确认删除" @confirm="deleteAttr(row.id)">
+                                <template #reference>
+                                    <el-button type="danger" icon="Delete">删除</el-button>
+                                </template>
+                            </el-popconfirm>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -31,23 +35,26 @@
                 </el-form>
                 <el-button @click="addAttrList" :disabled="attrvalue.attrName ? false : true" type="primary"
                     icon="Plus">添加属性值</el-button>
-                <el-button type="warning" @click="cancel">取消</el-button>
+                <el-button type="warning" @click="attrvalue.attrName = ''">取消</el-button>
                 <el-table :data="attrvalue.attrValueList" border style="margin:10px 0">
                     <el-table-column label="序号" type="index" width="80px"></el-table-column>
                     <el-table-column label="属性值名称">
                         <template #="{ row, $index }">
-                            <el-input v-if="row.flag" v-model="row.valueName" @blur="() => toLook(row)"
-                                placeholder="请输入名称" />
-                            <div v-else @click="() => toEdit(row)">{{ row.valueName }}</div>
+                            <el-input :ref="(vc: any) => inputAttr[$index] = vc" v-if="row.flag" v-model="row.valueName"
+                                @blur="() => toLook(row, $index)" placeholder="请输入名称" />
+                            <div v-else @click="() => toEdit(row, $index)">{{ row.valueName }}</div>
                         </template>
                     </el-table-column>
                     <el-table-column label="属性值操作">
-                        <el-tag type="danger" class="tag-delete">
-                            <Delete style="width: 1em; height: 1em; margin-right: 8px" />
-                        </el-tag>
+                        <template #="{ _, $index }">
+                            <el-tag @click="removeAttr($index)" type="danger" class="tag-delete">
+                                <Delete style="width: 1em; height: 1em; margin-right: 8px" />
+                            </el-tag>
+                        </template>
                     </el-table-column>
                 </el-table>
-                <el-button type="primary" @click="saveAttr">保存</el-button>
+                <el-button type="primary" @click="saveAttr"
+                    :disabled="attrvalue.attrValueList.length == 0">保存</el-button>
                 <el-button type="warning" @click="cancel">取消</el-button>
             </div>
         </el-card>
@@ -55,10 +62,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, nextTick, onBeforeMount } from 'vue';
 import CateGoryStore from '@/stores/modules/category';
-import type { Attr, AttrValue } from '@/api/production/type/type';
-import { reqUpdateAttr } from '../../api/production/attr';
+import type { Attr, AttrValue } from '@/api/production/attr/type';
+import { reqUpdateAttr, reqDeleteAttr } from '@/api/production/attr/attr';
 import { ElMessage } from "element-plus";
 let cateGoryStore = CateGoryStore();
 let scren = ref<number>(0)
@@ -71,6 +78,7 @@ let attrvalue = reactive<Attr>({
     categoryId: cateGoryStore.C3ID,
     categoryLevel: 3
 })
+let inputAttr = ref<any>([])
 
 const addAttr = () => {
     scren.value = 1
@@ -85,19 +93,49 @@ const addAttr = () => {
     })
 }
 
-const updateAttr = () => {
+const updateAttr = (row: Attr) => {
     scren.value = 1
+    Object.assign(attrvalue, JSON.parse(JSON.stringify(row)))
 }
+
+const deleteAttr = async (id: number) => {
+    let res: any = await reqDeleteAttr(id)
+
+    if (res.code == 200) {
+        ElMessage({
+            type: "success",
+            message: "删除成功"
+        })
+        cateGoryStore.getAttr()
+    } else {
+        ElMessage({
+            type: "error",
+            message: "删除失败"
+        })
+    }
+}
+
 const cancel = () => {
     scren.value = 0
+
+    Object.assign(attrvalue, {
+        attrName: "",
+        attrValueList: [
+
+        ],
+        categoryId: cateGoryStore.C3ID,
+        categoryLevel: 3
+    })
 }
 
 const addAttrList = () => {
     attrvalue.attrValueList.push({
         valueName: "",
-        flag: true
+        flag: flag.value
     })
-
+    nextTick(() => {
+        inputAttr.value[inputAttr.value.length - 1].focus()
+    })
 }
 
 const saveAttr = async () => {
@@ -118,21 +156,47 @@ const saveAttr = async () => {
     }
 }
 
-const toLook = (row: AttrValue) => {
+const toLook = (row: AttrValue, $index: number) => {
     if (row.valueName.trim() === '') {
+        attrvalue.attrValueList.splice($index, 1)
         ElMessage({
             type: 'error',
             message: "输入不能为空"
         })
         return
     }
-
+    if (attrvalue.attrValueList.find((item) => {
+        if (item != row) {
+            return item.valueName === row.valueName
+        }
+    })) {
+        attrvalue.attrValueList.splice($index, 1)
+        ElMessage({
+            type: 'error',
+            message: "属性值不能重复"
+        })
+        return
+    }
     row.flag = false
 }
 
-const toEdit = (row: AttrValue) => {
+const toEdit = (row: AttrValue, $index: number) => {
     row.flag = true
+
+    nextTick(() => {
+        inputAttr.value[$index].focus()
+    })
 }
+
+const removeAttr = ($index: number) => {
+    attrvalue.attrValueList.splice($index, 1)
+
+    inputAttr.value.splice($index, 1)
+}
+
+onBeforeMount(() => {
+    cateGoryStore.$reset()
+})
 </script>
 
 <style lang="less" scoped>
