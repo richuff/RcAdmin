@@ -17,9 +17,6 @@ import { getTime } from '../../utils/time';
 onMounted(() => {
     UserStore.userinfo();
 })
-
-
-
 </script>
 
 <style scoped></style>

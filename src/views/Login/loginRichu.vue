@@ -15,7 +15,9 @@
                             v-model="logininfos.password" :show-password="true">
                         </el-input>
                     </el-form-item>
-                    <input class="submit" value="Login" @click="submit">
+                    <div class="submit" @click="submit">
+                        Login
+                    </div>
                 </el-form>
             </div>
         </div>
