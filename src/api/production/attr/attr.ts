@@ -23,3 +23,4 @@ export const reqAttr = (category1Id:number | string, category2Id:number | string
 export const reqUpdateAttr = (data:Attr) => request.post<any,any>(API.UPDATE_ATTR,data);
 
 export const reqDeleteAttr = (data:number) => request.delete<any,any>(API.DELETE_ATTR + data)
+

@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import type { AttrList, CateGoryObj } from "../../api/production/type/type"
+import type { AttrList, CateGoryObj } from "../../api/production/attr/type"
 
 export interface UserState {
     token: string | null;

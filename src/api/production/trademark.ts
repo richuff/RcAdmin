@@ -1,5 +1,5 @@
 import request from '../../utils/requests'
-import type { ITrademarkResponseData, ITrademark } from './type/type'
+import type { ITrademarkResponseData, ITrademark } from './attr/type'
 enum API {
     TRADEMARK_URL = "/api/admin/product/baseTrademark/",
     ADDTRADEMARK_URL = "/api/admin/product/baseTrademark/save",
