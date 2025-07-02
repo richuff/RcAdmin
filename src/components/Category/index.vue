@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, watch } from 'vue';
 import CateGoryStore from '@/stores/modules/category';
 let cateGoryStore = CateGoryStore();
 interface Props {
@@ -36,7 +37,6 @@ interface Props {
 }
 let props = defineProps<Props>()
 //引入生命周期钩子
-import { onMounted, watch } from 'vue';
 onMounted(() => {
     getC1();
 })
