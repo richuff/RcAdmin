@@ -9,7 +9,9 @@ enum API {
     ALLTRADEMARK_URL = API.BASEURL + "/baseTrademark/getTrademarkList",
     IMAGE_URL = API.BASEURL + '/spuImageList/',
     SPUSALEATTR_LIST_URL= API.BASEURL + "/spuSaleAttrList",
-    ALLSALEATTR_URL = API.BASEURL + "/baseSaleAttrList"
+    ALLSALEATTR_URL = API.BASEURL + "/baseSaleAttrList",
+    ADDSPU_URL = API.BASEURL + "/saveSpuInfo",
+    UPDATESPU_URL = API.BASEURL + "/saveSpuInfo"
 }
 
 export const reqHasSpu = (page:number,limit:number,category3Id:number|string)=>
@@ -22,3 +24,11 @@ export const reqSpuImageList = (spuId:number)=>request.get<any,SpuImgResponse>(A
 export const reqSpuSaleAttrList = (spuId:number)=>request.get<any,spuSaleAttrValueResponseData>(API.SPUSALEATTR_LIST_URL+spuId)
 
 export const reqAllSaleAttr = ()=>request.get<any,HasSaleAttrResponseData>(API.ALLSALEATTR_URL)
+
+export const reqAddorUpdateSPU = (data:any) => {
+    if (data.id){
+        request.post<any,any>(API.UPDATESPU_URL,data)
+    }else{
+        request.post<any,any>(API.ADDSPU_URL,data)
+    }
+}
