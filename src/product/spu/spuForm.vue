@@ -25,10 +25,13 @@
             </el-dialog>
         </el-form-item>
         <el-form-item label="SPU销售属性">
-            <el-select placeholder="" style="width: 200px;">
-                <el-option v-for="(item, _) in [1, 2, 3]" :key="item"></el-option>
+            <el-select v-model="saleAttrIdAndName"
+                :placeholder="unSelectSaleAttr.length ? `还未选择${unSelectSaleAttr.length}个` : '无'" style="width: 200px;">
+                <el-option :value="`${item.id}:${item.name}`" v-for="(item, _) in unSelectSaleAttr" :label="item.name"
+                    :key="item.id"></el-option>
             </el-select>
-            <el-button type="primary" style="margin-left: 10px;" icon="Plus" size="default">添加属性值</el-button>
+            <el-button type="primary" @click="addSaleAttr" :disabled="saleAttrIdAndName ? false : true"
+                style="margin-left: 10px;" icon="Plus" size="default">添加属性值</el-button>
             <el-table style="margin: 10px 0;" :data="saleAttrList">
                 <el-table-column label="序号" align="center" type="index" width="80"></el-table-column>
                 <el-table-column label="销售属性值名字" prop="saleAttrName"></el-table-column>
@@ -82,6 +85,7 @@ let spuParams = ref<SpuData>({
     spuImageList: [],
     spuSaleAttrList: []
 })
+let saleAttrIdAndName = ref<string>('')
 const initHasSpuData = async (row: SpuData) => {
     spuParams.value = row
     let result: AllTradeMark = await reqAllTradeMark()
@@ -141,6 +145,17 @@ let unSelectSaleAttr = computed(() => {
     })
     return unSelectAttr
 })
+const addSaleAttr = () => {
+    let [baseSaleAttrId, saleAttrName] = saleAttrIdAndName.value.split(':')
+
+    let newSaleAttr: SaleAttr = {
+        baseSaleAttrId: baseSaleAttrId,
+        saleAttrName: saleAttrName,
+        spuSaleAttrValueList: []
+    }
+    saleAttrList.value.push(newSaleAttr)
+    saleAttrIdAndName.value = ''
+}
 </script>
 
 <style lang="less" scoped></style>

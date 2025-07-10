@@ -42,8 +42,10 @@ export interface SpuImg{
     createTime?:string,
     updateTime?:string,
     spuId?:number,
-    imgName:string,
-    imgUrl:string
+    imgName?:string,
+    imgUrl?:string,
+    name?:string,
+    url?:string
 }
 
 export interface SpuImgResponse extends ResponseData{
@@ -68,8 +70,8 @@ export interface SaleAttr{
     id?:number,
     createTime?:null,
     updateTime?:null,
-    spuId:number,
-    baseSaleAttrId:number,
+    spuId?:number,
+    baseSaleAttrId:number | string,
     saleAttrName?:string,
     spuSaleAttrValueList:spuSaleAttrValueList
 }
