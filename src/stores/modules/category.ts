@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { reqAttr, reqC1, reqC2, reqC3 } from "../../api/production/attr"
-import type { AttrResponseData, CateGoryResponseData } from "../../api/production/type/type"
+import { reqAttr, reqC1, reqC2, reqC3 } from "../../api/production/attr/attr"
+import type { AttrResponseData, CateGoryResponseData } from "../../api/production/attr/type"
 import type { CategoryState } from '../type/type'
 
 let CateGoryStore = defineStore('Category', {

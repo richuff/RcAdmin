@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive } from 'vue';
 import { reqHadTrademark, reqAddOrUpdateTrademark, reqRemoveTrademark } from '../../api/production/trademark'
-import type { ITrademark } from '../../api/production/type/type'
+import type { ITrademark } from '../../api/production/attr/type'
 import type { UploadProps } from 'element-plus'
 import { ElMessage } from 'element-plus'
 let PageNo = ref<number>(1);
